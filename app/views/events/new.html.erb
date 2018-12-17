@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="mb-5 text-center">Добавление мероприятия</h1>
+      <%= form_for :event, html: { multipart: true }, url: events_path do |f| %>
+        <% if @event.errors.any? %>
+          <% @event.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+          <% end %>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :organizer_id, "Организатор*" %> <br>
+          <%= f.collection_select(:organizer_id, Organizer.order(:name), :id, :name, {:class=>"form-control"})%>
+        </div>
+        <div class="form-group">
+          <%= f.label :title, "Название*" %> <br>
+          <%= f.text_field(:title, {:class => "form-control"}) %>
+        </div>
+        <div class="form-row">
+          <div class="col mb-3">
+            <%= f.label :date, "Дата проведения*" %> <br>
+            <%= f.date_field(:date, {:class => "form-control"}) %> <br>
+          </div>
+
+          <div class="col mb-3">
+            <%= f.label :start_time, "Время начала*" %> <br>
+            <%= f.time_field :start_time, {:class => "form-control"} %> <br>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :short_desc, "Краткое описание" %> <br>
+          <%= f.text_field(:short_desc, {:class => "form-control"}) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :desc, "Описание*" %> <br>
+          <%= f.text_area(:desc, {:class => "form-control"}) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :city, "Город*" %> <br>
+          <%= f.text_field(:city, {:class => "form-control"}) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :address, "Адрес*" %> <br>
+          <%= f.text_field(:address, {:class => "form-control"}) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :image, "Изображение" %> <br>
+          <%= f.file_field :image %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :link, "Ссылка на сайт*" %> <br>
+          <%= f.text_field(:link, {:class => "form-control"}) %>
+        </div>
+
+        <%= f.submit("Создать", {:class => "btn btn-success mb-3"}) %>
+        </div>
+      <% end %>
+      </div>
+</div>

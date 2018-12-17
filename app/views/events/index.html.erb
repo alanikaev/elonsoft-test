@@ -1,0 +1,43 @@
+<div class="container">
+  <% if @events.blank? %>
+    <h1 class="h1">Мероприятий нет</h1>
+  <% else %>
+    <h1 class="h1">Мероприятия</h1>
+    <a class="btn btn btn-secondary dropdown-toggle mb-3" data-toggle="collapse" href="#event_search" role="button" aria-expanded="false" aria-controls="event_search">
+      Фильтры
+    </a>
+    <div class="mb-5">
+      <%= search_form_for(@search, class: "collapse") do |f| %>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <%= f.label :city_eq, "Город: ", class: "col-sm-2 col-form-label" %>
+            <%= f.text_field :city_eq, class: "form-control" %>
+          </div>
+          <div class="form-group col-md-3">
+            <%= f.label :address_eq, "Адрес: ", class: "col-sm-2 col-form-label" %>
+            <%= f.text_field :address_eq, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <%= f.label :date_eq, "Дата: ", class: "col-sm-2 col-form-label" %>
+            <%= f.date_field :date_eq, class: "form-control" %>
+          </div>
+          <div class="form-group col-md-3">
+            <%= f.label :organizer_id_eq, "Организатор: ", class: "col-sm-2 col-form-label" %>
+            <%= f.select(:organizer_id_eq, options_from_collection_for_select(Organizer.all, "id", "name", @search.organizer_id_eq), {include_blank: true}, {:class => "form-control"}) %>
+          </div>
+        </div>
+        <%= f.submit("Искать", {:class => "btn btn-primary"}) %>
+      <% end %>
+    </div>
+    <%= render partial: "cards", locals: {events: @events} %>
+  <% end %>
+</div>
+
+
+<%=
+  will_paginate @events,
+                renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
+                list_classes: %w(pagination justify-content-center)
+%>

@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="h1 mb-4">Список организаторов</h1>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <ul class="list-group">
+        <% @organizers.each do |organizer| %>
+          <%= link_to organizer.name, organizer_path(organizer), class: "list-group-item list-group-item-action list-group-item-light mb-3" %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

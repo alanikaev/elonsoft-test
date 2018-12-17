@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card w-50">
+      <div class="card-body">
+        <h1 class="card-title"><%= @organizer.name %></h1>
+        <p class="card-text"><%= @organizer.desc %></p>
+
+        <% if @events.blank? %>
+          <p class="card-text">Созданных мероприятий нет</p>
+        <% else %>
+          <a class="btn btn-primary dropdown-toggle mb-3" data-toggle="collapse" href="#collapseEvents" role="button" aria-expanded="false" aria-controls="collapseEvents">Список
+            организованных мероприятий</a>
+          <ul id="collapseEvents" class="collapse list-group">
+            <% @events.each do |event| %>
+              <%= link_to event.title, event_path(event), class: "list-group-item mb-3" %>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

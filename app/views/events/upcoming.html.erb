@@ -1,0 +1,8 @@
+<div class="container">
+  <% if @events.blank? %>
+    <h1 class="h1">Предстоящих мероприятий нет</h1>
+  <% else %>
+    <h1 class="h1 mb-5">Предстоящие мероприятия</h1>
+    <%= render partial: "cards", locals: {events: @events} %>
+  <% end %>
+</div>
