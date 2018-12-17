@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :organizers
+  resources :subscribers
 
   root "events#index", as: 'home'
 end

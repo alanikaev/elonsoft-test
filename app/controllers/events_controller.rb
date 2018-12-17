@@ -25,6 +25,13 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if (@event.save)
+      current_date = Time.now.in_time_zone('Moscow').to_date
+      if event_params["date"].to_date > current_date
+        @subscribers = Subscriber.all
+        @subscribers.each do |subscriber|
+          SubscribeMailer.with(email: subscriber.email).subscriptions_email.deliver_later
+        end
+      end
       redirect_to @event
     else
       render 'new'

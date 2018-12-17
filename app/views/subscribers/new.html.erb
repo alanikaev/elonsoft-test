@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="mb-5 text-center">Подписка на оповещения</h1>
+      <%= form_for @subscriber do |f| %>
+        <% if @subscriber.errors.any? %>
+          <% @subscriber.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+          <% end %>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :email, "E-mail*" %> <br>
+          <%= f.email_field(:email, {:class => "form-control"}) %>
+        </div>
+        <%= f.submit("Подписаться", {:class => "btn btn-success mb-3"}) %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -10,18 +10,34 @@
 </head>
 
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">Elonsoft</h5>
-  <nav class="nav nav-masthead justify-content-center">
-    <span class="nav-link <%= 'active' if current_page?(home_path) %>"><%= link_to "Главная страница", home_path %></span>
-    <span class="nav-link <%= 'active' if current_page?(new_event_path) %>"><%= link_to "Создать мероприятие", new_event_path %></span>
-    <span class="nav-link <%= 'active' if current_page?(new_event_path) %>"><%= link_to "Добавить организатора", new_organizer_path %></span>
-    <span class="nav-link <%= 'active' if current_page?(past_events_path) %>"><%= link_to "Прошедшие", past_events_path %></span>
-    <span class="nav-link <%= 'active' if current_page?(past_events_path) %>"><%= link_to "Предстоящие", upcoming_events_path %></span>
-    <span class="nav-link <%= 'active' if current_page?(organizers_path) %>"><%= link_to "Список организаторов", organizers_path %></span>
-  </nav>
-  <a class="btn btn-outline-primary" href="#">Sign in</a>
-</div>
+<nav class="navbar bg-dark navbar-dark mb-5">
+  <%= link_to "Elonsoft", home_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to "Создать мероприятие", new_event_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Добавить организатора", new_organizer_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Прошедшие", past_events_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Предстоящие", upcoming_events_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Предстоящие", upcoming_events_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Подписка на предстоящие мероприятия", new_subscriber_path%>
+      </li>
+    </ul>
+  </div>
+</nav>
 <%= yield %>
 </body>
 </html>
