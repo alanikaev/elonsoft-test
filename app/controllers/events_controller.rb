@@ -11,11 +11,11 @@ class EventsController < ApplicationController
   end
 
   def past
-    @events = Event.all.where("date < ?", Time.now.in_time_zone('Moscow').to_date)
+    @events = Event.all.where("date < ?", Time.now.in_time_zone('Moscow').to_date).paginate(page: params[:page], per_page: 8)
   end
 
   def upcoming
-    @events = Event.all.where("date >= ?", Time.now.in_time_zone('Moscow').to_date)
+    @events = Event.all.where("date >= ?", Time.now.in_time_zone('Moscow').to_date).paginate(page: params[:page], per_page: 8)
   end
 
   def show
@@ -68,6 +68,6 @@ class EventsController < ApplicationController
   end
 
   private def event_params
-    params.require(:event).permit(:title, :date, :start_time, :short_desc, :desc, :city, :address, :image, :link, :organizer_id)
+    params.require(:event).permit(:title, :date, :start_time, :short_desc, :desc, :city, :address, :image, :link, :organizer_id, :all_tags)
   end
 end

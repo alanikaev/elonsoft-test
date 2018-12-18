@@ -6,3 +6,9 @@
     <%= render partial: "cards", locals: {events: @events} %>
   <% end %>
 </div>
+
+<%=
+  will_paginate @events,
+                renderer: WillPaginate::ActionView::BootstrapLinkRenderer,
+                list_classes: %w(pagination justify-content-center)
+%>

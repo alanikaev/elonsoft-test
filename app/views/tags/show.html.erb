@@ -1,0 +1,8 @@
+<div class="container">
+  <% if @tag.blank? %>
+    <h1 class="h1">Мероприятий по тегу: <%= @tag.name %> нет</h1>
+  <% else %>
+    <h1 class="h1">Мероприятия по тегу "<%= @tag.name %>"</h1>
+    <%= render partial: "events/cards", locals: {events: @events} %>
+  <% end %>
+</div>

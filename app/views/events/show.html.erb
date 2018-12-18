@@ -23,6 +23,9 @@
             </div>
           </div>
         <% end %>
+        <div class="card-text">
+          <%= raw @event.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "badge badge-primary"}.join(' ') %>
+        </div>
       </div>
     </div>
   </div>

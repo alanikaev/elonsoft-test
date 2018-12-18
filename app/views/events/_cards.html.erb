@@ -19,6 +19,11 @@
           </div>
         </div>
         <% end %>
+        <% if event.tags %>
+          <div class="card-text mt-3">
+            <%= raw event.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "badge badge-primary"}.join(' ') %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
