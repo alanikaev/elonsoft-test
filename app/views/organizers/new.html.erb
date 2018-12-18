@@ -9,12 +9,13 @@
           <% end %>
         <% end %>
         <div class="form-group">
-          <%= f.label :name, "Название организации*" %> <br>
+          <%= f.label :name, "Имя-Фамилия*" %> <br>
           <%= f.text_field(:name, {:class => "form-control"}) %>
         </div>
         <div class="form-group">
           <%= f.label :desc, "Описание*" %> <br>
-          <%= f.text_area(:desc, {:class => "form-control"}) %>
+          <%= f.text_area(:desc, {:class => "tinymce form-control"})%>
+          <%= tinymce %>
         </div>
         <%= f.submit("Создать", {:class => "btn btn-success mb-3"}) %>
       <% end %>

@@ -3,10 +3,10 @@
     <div class="card w-50">
       <div class="card-body">
         <h1 class="card-title"><%= @organizer.name %></h1>
-        <p class="card-text"><%= @organizer.desc %></p>
+        <p class="card-text"><%= raw @organizer.desc %></p>
 
         <% if @events.blank? %>
-          <p class="card-text">Созданных мероприятий нет</p>
+          <p class="card-text">Организованных мероприятий нет</p>
         <% else %>
           <a class="btn btn-primary dropdown-toggle mb-3" data-toggle="collapse" href="#collapseEvents" role="button" aria-expanded="false" aria-controls="collapseEvents">Список
             организованных мероприятий</a>

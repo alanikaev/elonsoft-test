@@ -8,8 +8,17 @@
           <%= I18n.l(event.date, format: "%d %B %Y, ") %>
           <%= I18n.l(event.start_time, format: "%H:%M") %>
         </div>
+        <div class="card-text mb-3"><%= event.city %></div>
         <div class="card-text mb-3"><%= event.short_desc %></div>
         <%= link_to "Узнать больше", event_path(event), :class => "btn btn-outline-primary" %>
+        <% if @admin %>
+        <div class="card-text mt-3">
+          <div class="d-inline-block">
+            <%= link_to "Изменить", edit_event_path(event)%>
+            <%= link_to "Удалить", event_path(event), method: :delete, data: {confirm: "Вы уверены?"}%>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
   <% end %>

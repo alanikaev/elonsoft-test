@@ -1,3 +1,4 @@
+<%= tinymce_assets %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,17 +25,26 @@
         <%= link_to "Добавить организатора", new_organizer_path %>
       </li>
       <li class="nav-item">
+        <%= link_to "Список организаторов", organizers_path %>
+      </li>
+      <li class="nav-item">
         <%= link_to "Прошедшие", past_events_path %>
       </li>
       <li class="nav-item">
         <%= link_to "Предстоящие", upcoming_events_path %>
       </li>
       <li class="nav-item">
-        <%= link_to "Предстоящие", upcoming_events_path %>
+        <%= link_to "Подписка на предстоящие мероприятия", new_subscriber_path %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Подписка на предстоящие мероприятия", new_subscriber_path%>
-      </li>
+      <% if @admin %>
+        <li class="nav-item">
+          <%= link_to "Выйти", admin_panel_signout_path %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Войти(режим администратора)", admin_panel_signin_path %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

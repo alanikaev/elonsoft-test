@@ -82,3 +82,5 @@ gem 'carrierwave-i18n'
 gem 'jquery-dadata-rails', github: 'gordienko/jquery-dadata-rails'
 
 gem 'mail', '~> 2.6', '>= 2.6.4'
+
+gem 'tinymce-rails'
