@@ -85,3 +85,9 @@ gem 'mail', '~> 2.6', '>= 2.6.4'
 
 gem 'tinymce-rails'
 
+gem 'icalendar', '~> 2.5', '>= 2.5.2'
+
+gem 'fog', '~> 1.38'
+
+gem "fog-aws"
+

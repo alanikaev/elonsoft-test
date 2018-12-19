@@ -25,4 +25,10 @@ class Event < ApplicationRecord
       Tag.where(name: name.strip).first_or_create!
     end
   end
+
+  private
+    def clean_s3
+      event.image.remove!
+      event.thumb.remove!
+    end
 end

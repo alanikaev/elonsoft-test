@@ -1,6 +1,6 @@
 <div class="row">
   <% @events.each do |event| %>
-    <div class="card mr-3 mb-3">
+    <div class="card ml-2 mr-2 mb-3">
       <%= image_tag event.image.url(:thumb), class: "card-image" if event.image? %>
       <div class="card-body">
         <div class="card-title"><%= event.title %></div>

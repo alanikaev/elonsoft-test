@@ -18,6 +18,7 @@
         <% if !@event.attachment_file.blank? %>
           <p class="card-text"><%= link_to "Приложенный файл", download_file_event_path(@event) %></p>
         <% end %>
+          <p class="card-text"><%= link_to "Скачать ICS", ics_event_path(@event)%></p>
         <% if @admin %>
           <div class="card-text mt-3">
             <div class="d-inline-block">

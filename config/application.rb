@@ -12,6 +12,8 @@ module Elonsoft
     config.load_defaults 5.2
     config.i18n.default_locale = :ru
 
+    config.assets.initialize_on_precompile = false
+
     I18n.default_locale = :ru
 
     I18n.locale = :ru

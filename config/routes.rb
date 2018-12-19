@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'download_file'
+      get 'ics'
     end
   end
 

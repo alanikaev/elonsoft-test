@@ -4,7 +4,6 @@ class EventsController < ApplicationController
     @search = Event.ransack(params[:q])
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @events = @search.result.paginate(page: params[:page], per_page: 8)
-    puts Rails.root
   end
 
   def new
@@ -12,18 +11,16 @@ class EventsController < ApplicationController
   end
 
   def past
-    @events = Event.all.where("date < ?", Time.now.in_time_zone('Moscow').to_date).paginate(page: params[:page], per_page: 8)
+    @events = Event.all.where('date < ?', Time.now.in_time_zone('Moscow').to_date).paginate(page: params[:page], per_page: 8)
   end
 
   def upcoming
-    @events = Event.all.where("date >= ?", Time.now.in_time_zone('Moscow').to_date).paginate(page: params[:page], per_page: 8)
+    @events = Event.all.where('date >= ?', Time.now.in_time_zone('Moscow').to_date).paginate(page: params[:page], per_page: 8)
   end
 
   def show
     @admin = cookies['admin']
     @event = Event.find(params[:id])
-
-    puts @event.organizer.name
   end
 
   def create
@@ -33,7 +30,7 @@ class EventsController < ApplicationController
       current_date = Time.now.in_time_zone('Moscow').to_date
 
       #Проверяем предстоящее ли мероприятие и делаем рассылку
-      if event_params["date"].to_date > current_date
+      if event_params['date'].to_date > current_date
         @subscribers = Subscriber.all
         @subscribers.each do |subscriber|
           SubscribeMailer.with(email: subscriber.email).subscriptions_email.deliver_now
@@ -66,15 +63,33 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    @event.image.remove!
     @event.destroy
     redirect_to events_path
   end
 
   def download_file
     @event = Event.find(params[:id])
-    send_file(@event.attachment_file.path,
-              :disposition => 'attachment',
-              :url_based_filename => false)
+    redirect_to @event.attachment_file.url
+  end
+
+  def ics
+    @event = Event.find(params[:id])
+    cal = Icalendar::Calendar.new
+    filename = @event.title
+    date = @event.date.to_s.tr('-','').to_i
+
+    cal.event do |e|
+      e.dtstart = Icalendar::Value::Date.new(date)
+      e.summary = @event.short_desc
+      e.url = @event.link
+      e.location = @event.city+','+@event.address
+    end
+
+    send_data(cal.to_ical,
+              type:'text/calendar',
+              disposition:'attachment',
+              filename: filename+'.ics')
     GC.start
   end
 
