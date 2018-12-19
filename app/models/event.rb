@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   mount_uploader :image, ImageUploader
+  mount_uploader :attachment_file, AttachmentUploader
 
   validates :title, presence: true, uniqueness: true
   validates :date, presence: true

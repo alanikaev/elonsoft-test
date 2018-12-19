@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       get 'past'
       get 'upcoming'
     end
+    member do
+      get 'download_file'
+    end
   end
 
   resources :organizers, only: [:index,:show,:new,:create]

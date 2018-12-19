@@ -9,6 +9,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :city, null: false
       t.string :address, null: false
       t.string :image
+      t.string :attachment_file
       t.string :link, null: false
       t.belongs_to :organizer, null: false, index: true
       t.timestamps

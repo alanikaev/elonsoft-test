@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_212328) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "image"
+    t.string "attachment_file"
     t.string "link", null: false
     t.bigint "organizer_id", null: false
     t.datetime "created_at", null: false

@@ -4,10 +4,12 @@ class EventsController < ApplicationController
     @search = Event.ransack(params[:q])
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @events = @search.result.paginate(page: params[:page], per_page: 8)
+    puts Rails.root
   end
 
   def new
     @event = Event.new
+    @organizers = Organizer.all.order(:name)
   end
 
   def past
@@ -67,7 +69,15 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def download_file
+    @event = Event.find(params[:id])
+    send_file(@event.attachment_file.path,
+              :disposition => 'attachment',
+              :url_based_filename => false)
+    GC.start
+  end
+
   private def event_params
-    params.require(:event).permit(:title, :date, :start_time, :short_desc, :desc, :city, :address, :image, :link, :organizer_id, :all_tags)
+    params.require(:event).permit(:title, :date, :start_time, :short_desc, :desc, :city, :address, :image, :attachment_file, :link, :organizer_id, :all_tags)
   end
 end
