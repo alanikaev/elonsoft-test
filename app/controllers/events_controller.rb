@@ -9,7 +9,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @organizers = Organizer.all.order(:name)
   end
 
   def past
@@ -23,6 +22,8 @@ class EventsController < ApplicationController
   def show
     @admin = cookies['admin']
     @event = Event.find(params[:id])
+
+    puts @event.organizer.name
   end
 
   def create

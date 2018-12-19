@@ -25,7 +25,7 @@
           </div>
           <div class="form-group col-md-3">
             <%= f.label :organizer_id_eq, "Организатор: ", class: "col-sm-2 col-form-label" %>
-            <%= f.select(:organizer_id_eq, options_from_collection_for_select(Organizer.all, "id", "name", @search.organizer_id_eq), {include_blank: true}, {:class => "form-control"}) %>
+            <%= f.select(:organizer_id_eq, options_from_collection_for_select(Organizer.all, "id", "name", @search.organizer_id_eq), {include_blank: true}, class: "form-control") %>
           </div>
         </div>
         <%= f.submit("Искать", {:class => "btn btn-primary"}) %>

@@ -15,19 +15,19 @@
         <p class="card-text"><%= @event.city %>,<%= @event.address %></p>
         <p class="card-text">Сайт организатора: <a href="<%= @event.link %>"><%= @event.link %></a></p>
         <p class="card-text">Организатор: <%= link_to @event.organizer.name, @event.organizer %></p>
-        <% if @event.attachment_file %>
-          <p class="card-text"><%= link_to "Приложенный файл",  download_file_event_path(@event)%></p>
+        <% if !@event.attachment_file.blank? %>
+          <p class="card-text"><%= link_to "Приложенный файл", download_file_event_path(@event) %></p>
         <% end %>
         <% if @admin %>
           <div class="card-text mt-3">
             <div class="d-inline-block">
-              <%= link_to "Изменить", edit_event_path(@event)%>
-              <%= link_to "Удалить", event_path(@event), method: :delete, data: {confirm: "Вы уверены?"}%>
+              <%= link_to "Изменить", edit_event_path(@event) %>
+              <%= link_to "Удалить", event_path(@event), method: :delete, data: {confirm: "Вы уверены?"} %>
             </div>
           </div>
         <% end %>
         <div class="card-text">
-          <%= raw @event.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "badge badge-primary"}.join(' ') %>
+          <%= raw @event.tags.map(&:name).map {|t| link_to t, tag_path(t), class: "badge badge-primary"}.join(' ') %>
         </div>
       </div>
     </div>

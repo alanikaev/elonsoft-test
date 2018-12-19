@@ -1,12 +1,12 @@
 <div class="row justify-content-center">
-  <%= form_with local:true do%>
-    <% flash.each do |key,message| %>
-      <div class="alert alert-danger <%= key %>" role="alert"><%=message %></div>
+  <%= form_with local: true do %>
+    <% flash.each do |key, message| %>
+      <div class="alert alert-danger <%= key %>" role="alert"><%= message %></div>
     <% end %>
-    <%= label_tag(:login)%>
-    <%= text_field_tag(:login, nil, class:"form-control mb-2")%>
-    <%= label_tag(:login, "Пароль")%>
-    <%= text_field_tag(:password, nil, class:"form-control mb-2")%>
-    <%= submit_tag("Войти", class: "btn btn-primary")%>
+    <%= label_tag(:login) %>
+    <%= text_field_tag(:login, nil, class: "form-control mb-2") %>
+    <%= label_tag(:login, "Пароль") %>
+    <%= password_field_tag(:password, nil, class: "form-control mb-2") %>
+    <%= submit_tag("Войти", class: "btn btn-primary") %>
   <% end %>
 </div>
