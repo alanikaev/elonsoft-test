@@ -1,7 +1,7 @@
 class SubscribeMailer < ApplicationMailer
   def subscriptions_email
     @email = params[:email]
-    @url = "http://localhost:3000/events/upcoming"
+    @url = "https://elonsoft.herokuapp.com/events/upcoming"
     mail(to: @email, subject: 'Оповещение о новых мероприятиях')
   end
 end

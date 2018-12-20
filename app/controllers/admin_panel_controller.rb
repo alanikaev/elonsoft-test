@@ -1,6 +1,6 @@
 class AdminPanelController < ApplicationController
   def index
-    if cookies['admin']
+    if cookies['_adm_id']
       redirect_to :controller => 'events', :action => 'index'
     end
   end
@@ -10,7 +10,9 @@ class AdminPanelController < ApplicationController
     @password = params[:password]
 
     if @login == 'elonsoft' && @password == 'elonsoftadm'
-      cookies['admin'] = true
+      secretId = SecureRandom.random_number 1000
+      cookies['_adm_id'] = secretId
+      session[secretId] = true
       redirect_to :controller => 'events', :action => 'index'
     else
       flash.now.notice = 'Неверный логин или пароль'
@@ -19,7 +21,9 @@ class AdminPanelController < ApplicationController
   end
 
   def signout
-    cookies.delete('admin')
+    secretId = cookies['_adm_id']
+    session.delete(secretId)
+    cookies.delete('_adm_id')
     redirect_to :controller => 'events', :action => 'index'
   end
 end

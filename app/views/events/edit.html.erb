@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1 class="mb-5 text-center">Редактирование мероприятия</h1>
-      <%= form_with model: @event, html: {multipart: true} do |f| %>
+      <%= form_with model: @event, html: {multipart: true}, local: true do |f| %>
         <% if @event.errors.any? %>
           <% @event.errors.full_messages.each do |msg| %>
             <div class="alert alert-danger"><%= msg %></div>
@@ -10,7 +10,7 @@
         <% end %>
         <div class="form-group">
           <%= f.label :organizer_id, "Организатор*" %> <br>
-          <%= f.collection_select(:organizer_id, Organizer.order(:name), :id, :name, {}, class:"form-control") %>
+          <%= f.collection_select(:organizer_id, Organizer.order(:name), :id, :name, {}, class: "form-control") %>
         </div>
         <div class="form-group">
           <%= f.label :title, "Название*" %> <br>
@@ -35,7 +35,7 @@
 
         <div class="form-group">
           <%= f.label :desc, "Описание*" %> <br>
-          <%= f.text_area(:desc, class:"tinymce form-control") %>
+          <%= f.text_area(:desc, class: "tinymce form-control") %>
           <%= tinymce %>
         </div>
 
@@ -52,6 +52,11 @@
         <div class="form-group">
           <%= f.label :image, "Изображение" %> <br>
           <%= f.file_field :image %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :attachment_file, "Дополнительные файлы(pdf,doc,docx)" %> <br>
+          <%= f.file_field :attachment_file %>
         </div>
 
         <div class="form-group">
